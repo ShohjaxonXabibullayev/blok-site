@@ -17,8 +17,8 @@ def index(request):
 def category(request, pk):
     category = Catagory.objects.get(id=pk)
     news = News.objects.filter(category=category).order_by('-id')
-    print(news)
-    return render(request, 'category-01.html', {'news':news})
+    categories = Catagory.objects.all()
+    return render(request, 'category-01.html', {'news':news, 'categories':categories})
 
 def new_detail(request, pk):
     post = News.objects.get(id=pk)
