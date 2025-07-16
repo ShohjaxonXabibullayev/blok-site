@@ -74,12 +74,7 @@
 
     <form method="POST">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="text" name="first_name" placeholder="Ism" required>
-        <input type="text" name="last_name" placeholder="Familiya" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password1" placeholder="Parol" required>
-        <input type="password" name="password2" placeholder="Parolni tasdiqlang" required>
+        {{ form.as_p }}
         <button type="submit">Ro'yxatdan o'tish</button>
     </form>
 </div>

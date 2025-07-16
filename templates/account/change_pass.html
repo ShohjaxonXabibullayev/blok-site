@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parolni o‘zgartirish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #374151;
+        }
+
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 10px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>🔐 Parolni o‘zgartirish</h2>
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Eski parol:</label>
+            {{ form.old_pass }}
+
+            <label>Yangi parol:</label>
+            {{ form.new_pass }}
+
+            <label>Parolni tasdiqlang:</label>
+            {{ form.confirm_pass }}
+
+            <label>Emailga yuborilgan kod:</label>
+            {{ form.code }}
+
+            <button type="submit">Parolni o‘zgartirish</button>
+        </form>
+    </div>
+</body>
+</html>

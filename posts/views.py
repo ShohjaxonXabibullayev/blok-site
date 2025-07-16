@@ -9,7 +9,7 @@ def index(request):
         category_first_post = News.objects.filter(category=category).order_by('-created_at').first()
         if category_first_post is not None:
             first_news.append(category_first_post)
-    first_news = first_news[-5:]
+    first_news = first_news[-4:]
     news = News.objects.order_by('-created_at')
     return render(request, 'index.html', {'categories':categories, 'first_news':first_news, 'news':news})
 
@@ -24,3 +24,7 @@ def new_detail(request, pk):
     post = News.objects.get(id=pk)
     return render(request, 'blog-detail-01.html', {'post':post})
 # Create your views here.
+@login_required
+def profile(request):
+    user = User.objects.get(username=request.user.username)
+    return render(request, 'account/profile.html', {'user':user})
