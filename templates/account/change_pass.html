@@ -1,84 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Parolni o‘zgartirish</title>
+    <title>Parolni O'zgartirish</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background: #f2f2f2;
+            padding: 40px;
         }
 
         .form-container {
-            background-color: white;
+            max-width: 400px;
+            margin: auto;
+            background: white;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
-        .form-container h2 {
+        h2 {
             text-align: center;
-            margin-bottom: 20px;
-            color: #1f2937;
+            margin-bottom: 25px;
+            color: #333;
         }
 
         label {
             display: block;
             margin-top: 15px;
-            color: #374151;
+            font-weight: bold;
+            color: #444;
         }
 
         input[type="password"],
         input[type="text"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
             margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
         }
 
-        button {
+        .btn-submit {
             margin-top: 25px;
             width: 100%;
-            padding: 10px;
-            background-color: #2563eb;
-            color: white;
+            padding: 12px;
+            background-color: #4CAF50;
             border: none;
-            border-radius: 6px;
+            color: white;
             font-size: 16px;
+            border-radius: 8px;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #1d4ed8;
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+
+        .errorlist {
+            color: red;
+            margin-top: 5px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .messages {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #e6ffed;
+            color: #2e7d32;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>🔐 Parolni o‘zgartirish</h2>
-        <form method="POST">
-            {% csrf_token %}
 
-            <label>Eski parol:</label>
-            {{ form.old_pass }}
+<div class="form-container">
+    <h2>Parolni O'zgartirish</h2>
 
-            <label>Yangi parol:</label>
-            {{ form.new_pass }}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
 
-            <label>Parolni tasdiqlang:</label>
-            {{ form.confirm_pass }}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
 
-            <label>Emailga yuborilgan kod:</label>
-            {{ form.code }}
+        <label for="id_ol_pass">Eski parol:</label>
+        {{ form.old_pass }}
+        {{ form.old_pass.errors }}
 
-            <button type="submit">Parolni o‘zgartirish</button>
-        </form>
-    </div>
+        <label for="id_new_pass">Yangi parol:</label>
+        {{ form.new_pass }}
+        {{ form.new_pass.errors }}
+
+        <label for="id_confrim_pass">Parolni tasdiqlang:</label>
+        {{ form.confirm_pass }}
+        {{ form.confirm_pass.errors }}
+
+        <label for="id_code">Email orqali kelgan kod:</label>
+        {{ form.code }}
+        {{ form.code.errors }}
+
+        <button type="submit" class="btn-submit">Yuborish</button>
+    </form>
+</div>
+
 </body>
 </html>

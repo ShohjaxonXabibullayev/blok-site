@@ -100,9 +100,10 @@ def change_pass_view(request):
                 return redirect('change-pass')
             if session_code != code:
                 messages.error(request, 'Tasdiqlash Codeingiz xato')
+                return redirect('change-pass')
 
             user = request.user
             user.set_password(new_pass)
             user.save()
             messages.success(request, 'Parolingiz ozgartirldi')
-            return redirect('profile')
+            return redirect('login')
