@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.template.defaulttags import comment
+
 from .models import *
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def index(request):
     categories = Catagory.objects.all()
@@ -22,7 +25,18 @@ def category(request, pk):
 
 def new_detail(request, pk):
     post = News.objects.get(id=pk)
-    return render(request, 'blog-detail-01.html', {'post':post})
+    comments = Comment.objects.filter(news=post).order_by('-id')[:3]
+    if request.method == "POST":
+        comment = request.POST['msg']
+        Comment.objects.create(
+            news = post,
+            pos_text = comment,
+            user = request.user
+        )
+        print(comment)
+        messages.info(request, 'Comment qoldirdingiz')
+
+    return render(request, 'blog-detail-01.html', {'post':post, 'comments':comments})
 # Create your views here.
 @login_required
 def profile(request):

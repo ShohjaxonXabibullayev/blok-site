@@ -131,16 +131,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # SMTP server host
-EMAIL_PORT = 587  # SMTP server port (587 for TLS, 465 for SSL)
-EMAIL_USE_TLS = True  # True for TLS, False for SSL
-EMAIL_HOST_USER = 'qodirovyoqub066@gmail.com'  # SMTP server username
-EMAIL_HOST_PASSWORD = 'jqpj uerh cpmq podf'  # SMTP server password
-EMAIL_USE_SSL = False  # Set to True if using SSL
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Default sender email address
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'  # SMTP server host
+# EMAIL_PORT = 587  # SMTP server port (587 for TLS, 465 for SSL)
+# EMAIL_USE_TLS = True  # True for TLS, False for SSL
+# EMAIL_HOST_USER = 'qodirovyoqub066@gmail.com'  # SMTP server username
+# EMAIL_HOST_PASSWORD = 'jqpj uerh cpmq podf'  # SMTP server password
+# EMAIL_USE_SSL = False  # Set to True if using SSL
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Default sender email address
 
 
-LOGIN_URL = '/account/login/'
-LOGIN_REDIRECT_URL = '/profile/'
-LOGOUT_REDIRECT_URL = '/'
+# LOGIN_URL = '/account/login/'
+# LOGIN_REDIRECT_URL = '/profile/'
+# LOGOUT_REDIRECT_URL = '/'

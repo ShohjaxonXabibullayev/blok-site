@@ -41,3 +41,16 @@ class ChangePassForm(forms.Form):
         if new_pass != confirm_pass:
             raise forms.ValidationError('Parollar mos emas')
         return cleane_data
+
+class ResetPassForm(forms.Form):
+    password = forms.CharField(label='Yangi parol', widget=forms.PasswordInput)
+    password_confirm = forms.CharField(label='Yangi parolni tasdiqlang', widget=forms.PasswordInput)
+    code = forms.CharField(label='Tasdiqlash kodi', max_length=6)
+
+    def clean(self):
+        cleane_data = super().clean()
+        password = self.cleaned_data['password']
+        password_confirm = self.cleaned_data['password_confirm']
+        if password != password_confirm:
+            raise forms.ValidationError('Parollar mos emas')
+        return cleane_data
